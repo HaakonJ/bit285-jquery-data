@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>JSON Read</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+		
+		<script type="text/javascript">
+			$("document").ready(function(){
+				//get the XML data and add list items
+				var url = "users.json";
+				$.getJSON(url,  function (data) {
+					 console.log(data); 
+					 console.log("Printing data.names");console.log(data.names);
+					 $.each(data.user, function (i, val) {
+						 var user = $("<li></li>").html(val.name);
+						 var ul = $("<li></li>");
+						 $("<li></li>").html("ID = " + val.id).appendTo(ul);
+						 var logins = $("<li></li>").html("Login dates");
+						 logins.appendTo(ul);
+						 var Date = $("<ul></ul>");
+						 $.each(val.login, function (i, date) {
+							 $("<li></li>").html(date).appendTo(Date);
+						 })
+						 Date.appendTo(login);
+						 ul.appendTo(user);
+						 user.appendTo("ul#userList");
+
+					});
+				});				
+			});
+ 
+		</script>
+	</head>
+	<body>
+		<h1>Reading from and JSON Document using jQuery.getJSON()</h1>
+		<ul id="userList"></ul>
+	</body>
+</html>
